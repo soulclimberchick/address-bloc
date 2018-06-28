@@ -1,10 +1,9 @@
 require_relative '../models/address_book'
 
 RSpec.describe AddressBook do
-  # #1
+
   let(:book) { AddressBook.new }
 
-  # #6
   def check_entry(entry, expected_name, expected_number, expected_email)
     expect(entry.name).to eq expected_name
     expect(entry.phone_number).to eq expected_number
@@ -16,13 +15,11 @@ RSpec.describe AddressBook do
       book.add_entry('Ada Lovelace', '010.012.1815', 'augusta.king@lovelace.com')
       book.add_entry('Ada Lovelace', '010.012.1815', 'augusta.king@lovelace.com')
       book.add_entry('Ada Lovelace', '010.012.1815', 'augusta.king@lovelace.com')
-
       book.eliminate
       expect(book.entries.size).to eq 0
     end
   end
 
-  # #2
   describe "attributes" do
     it "responds to entries" do
       expect(book).to respond_to(:entries)
@@ -65,7 +62,7 @@ RSpec.describe AddressBook do
     #Test that AddressBook's .import_from_csv() method is working as expected.
     describe "#import_from_csv" do
       it "imports the correct number of entries" do
-        # #3
+
         book.import_from_csv("entries.csv")
         book_size = book.entries.size
 
@@ -73,12 +70,10 @@ RSpec.describe AddressBook do
         expect(book_size).to eq 5
       end
 
-      # #4
       it "imports the 1st entry" do
         book.import_from_csv("entries.csv")
         # Check the first entry
         entry_one = book.entries[0]
-        # #5
         check_entry(entry_one, "Bill", "555-555-4854", "bill@blocmail.com")
       end
 
@@ -110,6 +105,7 @@ RSpec.describe AddressBook do
         check_entry(entry_five, "Sussie", "555-555-2036", "sussie@blocmail.com")
       end
     end
+
     # Test the binary_search method
     describe "#binary_search" do
       it "searches AddressBook for a non-existent entry" do

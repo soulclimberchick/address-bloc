@@ -18,7 +18,6 @@ class MenuController
     print "Enter your selection: "
 
     selection = gets.to_i
-    # #7
     case selection
       when 1
         system "clear"
@@ -43,9 +42,7 @@ class MenuController
         main_menu
       when 6
         puts "Good-bye!"
-        # #8
         exit(0)
-      # #9
       else
         system "clear"
         puts "Sorry, that is not a valid input"
@@ -53,13 +50,10 @@ class MenuController
     end
   end
 
-  # #10
   def view_all_entries
-    # #14
     address_book.entries.each do |entry|
       system "clear"
       puts entry.to_s
-      # #15
       entry_submenu(entry)
     end
 
@@ -68,31 +62,24 @@ class MenuController
   end
 
   def create_entry
-    # #11
     system "clear"
     puts "New AddressBloc Entry"
-    # #12
     print "Name: "
     name = gets.chomp
     print "Phone number: "
     phone = gets.chomp
     print "Email: "
     email = gets.chomp
-    # #13
     address_book.add_entry(name, phone, email)
-
     system "clear"
     puts "New entry created"
   end
 
   def search_entries
-
     print "Search by name: "
     name = gets.chomp
-
     match = address_book.binary_search(name)
     system "clear"
-
     if match
       puts match.to_s
       search_submenu(match)
@@ -102,17 +89,15 @@ class MenuController
   end
 
   def read_csv
-    # #1
     print "Enter CSV filel to import: "
     file_name = gets.chomp
 
-    # #2
     if file_name.empty?
       system "clear"
       puts "No CSV file read"
       main_menu
     end
-    # #3
+
     begin
       entry_count = address_book.import_from_csv(file_name).count
       system "clear"
@@ -123,25 +108,20 @@ class MenuController
     end
   end
   def entry_submenu(entry)
-    # #16
     puts "n - next entry"
     puts "d - delete entry"
     puts "e - edit this entry"
     puts "m - return to main menu"
 
-    # #17
     selection = gets.chomp
 
     case selection
-    # #18
       when "n"
-    # #19
       when "d"
         delete_entry(entry)
       when "e"
         edit_entry(entry)
         entry_submenu(entry)
-    # #20
       when "m"
         system "clear"
         main_menu
