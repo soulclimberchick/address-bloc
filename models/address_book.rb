@@ -9,6 +9,10 @@ require "csv"
       @entries = []
     end
 
+    def eliminate
+      @entries = []
+    end
+
   def add_entry(name, phone_number, email)
     # #9
     index = 0
